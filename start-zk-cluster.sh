@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#pull image from docker hub
+docker pull eldho/docker-zookeeper
+
 COUNT=$1
 if [[ -z "$COUNT" ]]; then COUNT=1; fi
 
@@ -20,7 +23,7 @@ do
 		echo "removed"
 	fi
 
-	CID=$(docker run -d -it -P --name=zk$i -e ZKID=$i $JMX -v /data/zookeeper zk)
+	CID=$(docker run -d -it -P --name=zk$i -e ZKID=$i $JMX eldho/docker-zookeeper)
 	
 	echo "started node zk$i"
 done
